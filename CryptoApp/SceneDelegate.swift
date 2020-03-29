@@ -20,9 +20,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
         // Create the SwiftUI view that provides the window contents.
+        
+        guard let coinsService: CoinsFetchable = ServiceLocator.shared.getService() else {
+            fatalError()
+        }
+        
+        guard let exchangesSerice: ExchangesFetchable = ServiceLocator.shared.getService() else {
+            fatalError()
+        }
+        
         let contentView = ContentView()
-            .environmentObject(CoinsListViewModel())
-            .environmentObject(ExchangesListViewModel())
+            .environmentObject(CoinsListViewModel(service: coinsService))
+            .environmentObject(ExchangesListViewModel(service: exchangesSerice))
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {

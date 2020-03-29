@@ -41,6 +41,9 @@
 		1F3E62EA241C01CE00FB6D53 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F3E62E8241C01CE00FB6D53 /* LaunchScreen.storyboard */; };
 		1F3E6343241C0CBD00FB6D53 /* CoinsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E6342241C0CBD00FB6D53 /* CoinsListView.swift */; };
 		1F3E6347241C0D8200FB6D53 /* CoinsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F3E6346241C0D8200FB6D53 /* CoinsListViewModel.swift */; };
+		1F8DAA78242BC22C00DB5EDC /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8DAA77242BC22C00DB5EDC /* ServiceLocator.swift */; };
+		1F8DAA7F242CE8C500DB5EDC /* CoinsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8DAA7E242CE8C500DB5EDC /* CoinsService.swift */; };
+		1F8DAA81242CE91E00DB5EDC /* ExchangesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8DAA80242CE91E00DB5EDC /* ExchangesService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +83,9 @@
 		1F3E62EB241C01CE00FB6D53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1F3E6342241C0CBD00FB6D53 /* CoinsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsListView.swift; sourceTree = "<group>"; };
 		1F3E6346241C0D8200FB6D53 /* CoinsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsListViewModel.swift; sourceTree = "<group>"; };
+		1F8DAA77242BC22C00DB5EDC /* ServiceLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLocator.swift; sourceTree = "<group>"; };
+		1F8DAA7E242CE8C500DB5EDC /* CoinsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsService.swift; sourceTree = "<group>"; };
+		1F8DAA80242CE91E00DB5EDC /* ExchangesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangesService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +146,7 @@
 		1F3E62DC241C01CD00FB6D53 /* CryptoApp */ = {
 			isa = PBXGroup;
 			children = (
+				1F8DAA79242CB3B300DB5EDC /* Services */,
 				1F3225C02420CBA900C34DC5 /* Network */,
 				1F32255F241D71EA00C34DC5 /* Extensions */,
 				1F32255A241D706C00C34DC5 /* Navigation */,
@@ -221,6 +228,16 @@
 				1F32259E241FC64700C34DC5 /* ExchangesListViewModel.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		1F8DAA79242CB3B300DB5EDC /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				1F8DAA77242BC22C00DB5EDC /* ServiceLocator.swift */,
+				1F8DAA7E242CE8C500DB5EDC /* CoinsService.swift */,
+				1F8DAA80242CE91E00DB5EDC /* ExchangesService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,11 +331,14 @@
 				1F32259F241FC64700C34DC5 /* ExchangesListViewModel.swift in Sources */,
 				1F3225CB2421221900C34DC5 /* Data+Extensions.swift in Sources */,
 				1F3225B4241FDD6900C34DC5 /* URLSessionImplementations.swift in Sources */,
+				1F8DAA78242BC22C00DB5EDC /* ServiceLocator.swift in Sources */,
 				1F3225C724211D1600C34DC5 /* DescriptionView.swift in Sources */,
 				1F3225B1241FDD6900C34DC5 /* Models.swift in Sources */,
+				1F8DAA81242CE91E00DB5EDC /* ExchangesService.swift in Sources */,
 				1F3E62E2241C01CD00FB6D53 /* ContentView.swift in Sources */,
 				1F32255E241D71E400C34DC5 /* NavController.swift in Sources */,
 				1F3225C924211FCB00C34DC5 /* HomeNavigationItem.swift in Sources */,
+				1F8DAA7F242CE8C500DB5EDC /* CoinsService.swift in Sources */,
 				1F3E6347241C0D8200FB6D53 /* CoinsListViewModel.swift in Sources */,
 				1F3225B9241FDD6900C34DC5 /* JSONEncodingHelper.swift in Sources */,
 				1F3225B3241FDD6900C34DC5 /* APIs.swift in Sources */,

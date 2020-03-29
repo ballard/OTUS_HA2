@@ -15,6 +15,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        ServiceLocator.shared.addService(service: CoinsService() as CoinsFetchable)
+        ServiceLocator.shared.addService(service: ExchangesService() as ExchangesFetchable)
+        
         return true
     }
 
