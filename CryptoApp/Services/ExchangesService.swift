@@ -7,10 +7,7 @@
 //
 
 import Foundation
-
-protocol ExchangesFetchable {
-    func fetchExchangesFromPage(_ page: Int, withLimit limit: Int, withCompletion completion: @escaping ([ExchangeItem]?)->Void)
-}
+import CryptoAppUI
 
 final class ExchangesService: ExchangesFetchable {
     

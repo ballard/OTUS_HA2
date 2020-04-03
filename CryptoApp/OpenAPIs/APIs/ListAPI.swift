@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+import CryptoAppUI
 
 open class ListAPI {
     /**

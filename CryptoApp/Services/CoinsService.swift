@@ -7,15 +7,11 @@
 //
 
 import Foundation
- 
-
-protocol CoinsFetchable {
-    func fetchCoins(_ completion: @escaping ([CoinItem]?)->Void)
-}
+import CryptoAppUI
 
 final class CoinsService: CoinsFetchable {
     
-    func fetchCoins(_ completion: @escaping ([CoinItem]?)->Void) {
+    func fetchCoins(_ completion: @escaping ([CoinItem]?) -> Void) {
         ListAPI.getCoinsList { items, error in
             completion(items)
         }

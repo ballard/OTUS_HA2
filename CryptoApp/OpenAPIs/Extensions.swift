@@ -86,26 +86,6 @@ extension UUID: JSONEncodable {
     }
 }
 
-extension String: CodingKey {
-
-    public var stringValue: String {
-        return self
-    }
-
-    public init?(stringValue: String) {
-        self.init(stringLiteral: stringValue)
-    }
-
-    public var intValue: Int? {
-        return nil
-    }
-
-    public init?(intValue: Int) {
-        return nil
-    }
-
-}
-
 extension KeyedEncodingContainerProtocol {
 
     public mutating func encodeArray<T>(_ values: [T], forKey key: Self.Key) throws where T : Encodable {
