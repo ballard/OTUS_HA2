@@ -19,7 +19,7 @@ final class ServiceLocator: ServiceLocating {
     private func typeName(some: Any) -> String {
         return (some is Any.Type) ? "\(some)" : "\(type(of: some as AnyObject))"
     }
-
+    
     func addService<T>(service: T) {
         let key = typeName(some: T.self)
         services[key] = service

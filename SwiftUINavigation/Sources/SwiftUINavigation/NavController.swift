@@ -12,7 +12,7 @@ import SwiftUI
 
 // MARK: - Views
 
-struct NavControllerView<Content>: View where Content: View {
+public struct NavControllerView<Content>: View where Content: View {
     
     @ObservedObject private var viewModel: NavControllerViewModel
     
@@ -20,7 +20,7 @@ struct NavControllerView<Content>: View where Content: View {
     
     private let transitions: (push: AnyTransition, pop: AnyTransition)
     
-    init(transition: NavTransition,
+    public init(transition: NavTransition,
          easing: Animation = .easeIn(duration: 0.33),
          @ViewBuilder content: @escaping () -> Content)
     {
@@ -35,7 +35,7 @@ struct NavControllerView<Content>: View where Content: View {
         
     }
     
-    var body: some View {
+    public var body: some View {
         let isRoot = viewModel.currentScreen == nil
         
         return ZStack {
@@ -57,7 +57,7 @@ struct NavControllerView<Content>: View where Content: View {
     }
 }
 
-struct NavPushButton<Label, Destination/*, Tag*/>: View where Label: View, Destination: View {//, Tag: Hashable {
+public struct NavPushButton<Label, Destination/*, Tag*/>: View where Label: View, Destination: View {//, Tag: Hashable {
     
     @EnvironmentObject private var viewModel: NavControllerViewModel
     
@@ -68,12 +68,12 @@ struct NavPushButton<Label, Destination/*, Tag*/>: View where Label: View, Desti
 //    @Binding private var isActive: Bool
 //    @Binding private var selection: Tag?
 //
-    init(destination: Destination,/* tag: Tag,*/ @ViewBuilder label: @escaping () -> Label) {
+    public init(destination: Destination,/* tag: Tag,*/ @ViewBuilder label: @escaping () -> Label) {
         self.destination = destination
         self.label = label()
     }
     
-    var body: some View {
+    public var body: some View {
 //        if isActive {
 //            DispatchQueue.main.async {
 //                self.push()
@@ -116,7 +116,7 @@ struct NavPopButton<Label>: View where Label: View {
 
 // MARK: - Enums
 
-enum NavTransition {
+public enum NavTransition {
     case none
     case custom(AnyTransition, AnyTransition)
 }

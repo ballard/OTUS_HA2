@@ -9,7 +9,7 @@
 import SwiftUI
 
 extension AnyTransition {
-    static var moveAndFadeIn: AnyTransition {
+    public static var moveAndFadeIn: AnyTransition {
         let insertion = AnyTransition.move(edge: .trailing)
             .combined(with: .opacity)
         let removal = AnyTransition.scale
@@ -18,7 +18,7 @@ extension AnyTransition {
     }
     
     
-    static var moveAndFafeOut: AnyTransition {
+    public static var moveAndFafeOut: AnyTransition {
         let insertion = AnyTransition.move(edge: .leading)
             .combined(with: .opacity)
         let removal = AnyTransition.scale

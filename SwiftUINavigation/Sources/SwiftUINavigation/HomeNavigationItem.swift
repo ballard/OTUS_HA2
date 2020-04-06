@@ -8,8 +8,9 @@
 
 import SwiftUI
 
-struct HomeNavigationItem: View {
-    var body: some View {
+public struct HomeNavigationItem: View {
+    public init(){}
+    public var body: some View {
         HStack {
             NavPopButton(destination: .root) { Image(systemName: "house") }
             Spacer()

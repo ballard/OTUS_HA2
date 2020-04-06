@@ -7,6 +7,8 @@
 //
 
 import SwiftUI
+import CryptoAppNetwork
+import SwiftUINavigation
 
 struct ContentView: View {
     

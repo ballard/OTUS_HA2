@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CryptoAppUI",
+        "repositoryURL": "https://github.com/ballard/CryptoAppUI.git",
+        "state": {
+          "branch": null,
+          "revision": "bb55e9743ec0114c9f03b9dfb31cac2c77995c4e",
+          "version": "0.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

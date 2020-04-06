@@ -8,8 +8,11 @@
 
 import SwiftUI
 
-struct BackNavigationItem: View {
-    var body: some View {
+public struct BackNavigationItem: View {
+    
+    public init(){}
+    
+    public var body: some View {
         HStack {
             NavPopButton(destination: .previous) { Image(systemName: "chevron.left") }
             Spacer()
