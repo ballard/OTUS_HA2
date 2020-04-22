@@ -12,7 +12,7 @@ import SwiftUINavigation
 
 struct ExchangeRow: View {
     
-    let item: ExchangeItem
+    let item: ExchangeData
     
     @ObservedObject var imageLoader: ImageLoader
     
@@ -59,7 +59,7 @@ struct ExchangesListView: View {
                 ExchangeRow(item: item, imageLoader: ImageLoader(urlString: item.image ?? ""))
                     .onAppear() {
                         if self.viewModel.items.isLast(item) {
-                            self.viewModel.loadPage()
+                            self.viewModel.downloadExchanges()
                         }
                 }
             }

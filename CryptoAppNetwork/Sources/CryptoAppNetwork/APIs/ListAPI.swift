@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 open class ListAPI {
     /**
      get coins list

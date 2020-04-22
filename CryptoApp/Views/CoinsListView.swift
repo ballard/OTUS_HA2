@@ -12,7 +12,7 @@ import SwiftUINavigation
 
 struct CoinRow: View {
     
-    let item: CoinItem
+    let item: CoinData
     
     var body: some View {
         NavPushButton(destination: CoinView(item: item)) {
@@ -35,10 +35,15 @@ struct CoinsListView: View {
         List(viewModel.items) { item in
             VStack(alignment: .leading) {
                 CoinRow(item: item)
+                    .onAppear() {
+                        if self.viewModel.items.isLast(item) {
+                            self.viewModel.fetchCoinsFromCache()
+                        }
+                }
             }
         }
         .onAppear() {
-            self.viewModel.fetch()
+            self.viewModel.fetchCoinsFromCache()
         }
     }
 }

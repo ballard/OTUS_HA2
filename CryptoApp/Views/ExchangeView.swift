@@ -14,7 +14,7 @@ struct ExchangeView: View {
     
     @ObservedObject var imageLoader: ImageLoader
     
-    let item: ExchangeItem
+    let item: ExchangeData
     
     var body: some View {
         NavigationView {

@@ -11,7 +11,7 @@ import CryptoAppNetwork
 import SwiftUINavigation
 
 struct CoinView: View {
-    let item: CoinItem
+    let item: CoinDataObject
     
     var body: some View {
         NavigationView {

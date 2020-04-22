@@ -8,11 +8,11 @@
 
 import UIKit
 import SwiftUI
+import PersistenceService
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
@@ -21,24 +21,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
         
-        guard let coinsService: CoinsFetchable = ServiceLocator.shared.getService() else {
+        guard let cache: Persistence = ServiceLocator.shared.tryGetService() else {
             fatalError()
         }
         
-        guard let exchangesSerice: ExchangesFetchable = ServiceLocator.shared.getService() else {
-            fatalError()
-        }
-        
-        let contentView = ContentView()
-            .environmentObject(CoinsListViewModel(service: coinsService))
-            .environmentObject(ExchangesListViewModel(service: exchangesSerice))
+        cache.configure {
+            guard let coinsService: CoinsFetchable = ServiceLocator.shared.tryGetService() else {
+                fatalError()
+            }
+            
+            guard let exchangesSerice: ExchangesFetchable = ServiceLocator.shared.tryGetService() else {
+                fatalError()
+            }
+            
+            let contentView = ContentView()
+                .environmentObject(CoinsListViewModel(service: coinsService, cache: cache))
+                .environmentObject(ExchangesListViewModel(service: exchangesSerice, cache: cache))
 
-        // Use a UIHostingController as window root view controller.
-        if let windowScene = scene as? UIWindowScene {
-            let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = UIHostingController(rootView: contentView)
-            self.window = window
-            window.makeKeyAndVisible()
+            // Use a UIHostingController as window root view controller.
+            if let windowScene = scene as? UIWindowScene {
+                let window = UIWindow(windowScene: windowScene)
+                window.rootViewController = UIHostingController(rootView: contentView)
+                self.window = window
+                window.makeKeyAndVisible()
+            }
         }
     }
 

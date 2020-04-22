@@ -13,30 +13,67 @@ extension ExchangeItem: Identifiable {}
 
 final class ExchangesListViewModel: ObservableObject {
     
-    @Published private(set) var items: [ExchangeItem] = [ExchangeItem]()
-    @Published private(set) var page: Int = 0
+    @Published private(set) var items = [ExchangeData]()
     @Published private(set) var isPageLoading = false
+    @Published private(set) var isPageFetching = false
+    
+    private var page = 1
+    private let limit = 20
+    var isInitialLoad = true
     
     let exchangesService: ExchangesFetchable
+    let cacheSerive: Persistence
+    let frc: ExchangesFRC
     
-    init(service: ExchangesFetchable) {
+    init(service: ExchangesFetchable, cache: Persistence) {
         self.exchangesService = service
+        self.cacheSerive = cache
+        self.frc = ExchangesFRC(context: cache.viewContext)
+        frc.didChangeContent = { [weak self] items in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                if let items = items, items.count > 0 {
+                    print("new data arrived: \(items.count)")
+                    self.items = items
+                    if self.isInitialLoad {
+                        let pageNum = Int(round(Double(items.count)/Double(self.limit))) + 1
+                        print("new page number: \(pageNum)")
+                        self.page = pageNum
+                        self.isInitialLoad = false
+                    }
+                } else {
+                    self.isInitialLoad = false
+                    self.downloadExchanges()
+                }
+            }
+        }
     }
     
     func loadPage() {
-        guard  isPageLoading == false else {
+        frc.performFetch()
+    }
+    
+    func downloadExchanges() {
+        guard isPageLoading == false else {
             return
         }
-        
         isPageLoading = true
         print("sending request")
-        exchangesService.fetchExchangesFromPage(page, withLimit: 20) { items in
+        exchangesService.fetchExchangesFromPage(self.page, withLimit: self.limit) { items in
             if let items = items {
-                self.items.append(contentsOf: items)
+                print("downloaded items count: \(items.count) page \(self.page) limit \(self.limit)")
+                DispatchQueue.global(qos: .userInitiated).async {
+                    self.cacheSerive.store(items, of: .exchange)
+                    DispatchQueue.main.async {
+                        self.isPageLoading = false
+                        if items.count > 0 {
+                            self.page += 1
+                        }
+                    }
+                }
             }
-            self.isPageLoading = false
-            self.page += 1
-            print("model items count: \(self.items.count)")
+            
         }
     }
+    
 }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19E266" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Coin" representedClassName="Coin" syncable="YES">
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="symbol" attributeType="String"/>
+        <fetchIndex name="byPropertyIndex">
+            <fetchIndexElement property="name" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Exchange" representedClassName="Exchange" syncable="YES">
+        <attribute name="country" optional="YES" attributeType="String"/>
+        <attribute name="hasTradingIncentive" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="itemDescription" optional="YES" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="tradeVolume24hBtc" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="tradeVolume24hBtcNormalized" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="trustScore" optional="YES" attributeType="Integer 32" usesScalarValueType="YES"/>
+        <attribute name="trustScoreRank" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <attribute name="yearEstablished" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <fetchIndex name="byPropertyIndex">
+            <fetchIndexElement property="name" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+            <uniquenessConstraint>
+                <constraint value="name"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <elements>
+        <element name="Coin" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="Exchange" positionX="-63" positionY="9" width="128" height="223"/>
+    </elements>
+</model>
