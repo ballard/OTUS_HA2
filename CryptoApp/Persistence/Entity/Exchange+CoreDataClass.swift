@@ -12,8 +12,14 @@ import CoreData
 import PersistenceService
 
 @objc(Exchange)
-public class Exchange: NSManagedObject {
-    static func insert(into context: NSManagedObjectContext, data: ExchangeDataObject) -> Exchange {
+public class Exchange: NSManagedObject, Insertable {
+    
+    typealias Entity = Exchange
+    
+    static func insert(into context: NSManagedObjectContext, data: Any) -> Exchange {
+        guard let data = data as? ExchangeDataObject else {
+            fatalError()
+        }
         let exchange: Exchange = context.insertObject()
         exchange.id = data.id
         exchange.name = data.name

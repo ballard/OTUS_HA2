@@ -63,7 +63,7 @@ final class ExchangesListViewModel: ObservableObject {
             if let items = items {
                 print("downloaded items count: \(items.count) page \(self.page) limit \(self.limit)")
                 DispatchQueue.global(qos: .userInitiated).async {
-                    self.cacheSerive.store(items, of: .exchange)
+                    self.cacheSerive.store(items, of: Exchange.self)
                     DispatchQueue.main.async {
                         self.isPageLoading = false
                         if items.count > 0 {

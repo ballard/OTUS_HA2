@@ -21,7 +21,7 @@ extension PersistenceService: Persistence {
         return self.coreDataStack.managedContext
     }
     
-    func store<T>(_ item: [T], of type: StoreType) {
+    func store<T: Insertable>(_ item: [Any], of type: T.Type) {
         let batchSize = 256
         let count = item.count
 
@@ -40,46 +40,17 @@ extension PersistenceService: Persistence {
             let batch = Array(item[range])
             
             // Stop the entire import if any batch is unsuccessful.
-            
-            var result = false
-            switch type {
-            case .coin:
-                result = storeCoinsBatch(batch)
-            case .exchange:
-                result = storeEchangesBatch(batch)
+            let moc = self.coreDataStack.backgroundContext
+            let result = moc.performChangesSync {
+                for item in batch {
+                    _ = type.insert(into: moc, data: item)
+                }
             }
+            moc.reset()
             if !result {
                 return
             }
         }
-    }
-    
-    private func storeCoinsBatch(_ coins: [Any]) -> Bool {
-        
-        guard let coins = coins as? [CoinDataObject] else { return false }
-        
-        let moc = self.coreDataStack.backgroundContext
-        let result = moc.performChangesSync {
-            for coin in coins {
-                _ = Coin.insert(into: moc, data: coin)
-            }
-        }
-        moc.reset()
-        return result
-    }
-    
-    private func storeEchangesBatch(_ exchanges: [Any]) -> Bool {
-        
-        guard let exchanges = exchanges as? [ExchangeDataObject] else { return false }
-        
-        let moc = self.coreDataStack.backgroundContext
-        let result = moc.performChangesSync {
-            for exchange in exchanges {
-                _ = Exchange.insert(into: moc, data: exchange)
-            }
-        }
-        moc.reset()
-        return result
     }
     
     func fetchCoins(offset: Int, limit: Int, completion: @escaping ([CoinData])->Void) {

@@ -56,7 +56,7 @@ final class CoinsListViewModel: ObservableObject {
             guard let self = self else { return }
             if let items = items {
                 DispatchQueue.global(qos: .userInitiated).async {
-                    self.cacheSerive.store(items, of: .coin)
+                    self.cacheSerive.store(items, of: Coin.self)
                     DispatchQueue.main.async {
                         self.isLoading = false
                         self.fetchCoinsFromCache()

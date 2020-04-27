@@ -12,9 +12,16 @@ import CoreData
 import PersistenceService
 
 @objc(Coin)
-public final class Coin: NSManagedObject {
+public final class Coin: NSManagedObject, Insertable {
     
-    static func insert(into context: NSManagedObjectContext, data: CoinDataObject) -> Coin {
+    typealias Entity = Coin
+    
+    static func insert(into context: NSManagedObjectContext, data: Any) -> Coin {
+        
+        guard let data = data as? CoinDataObject else {
+            fatalError()
+        }
+        
         let coin: Coin = context.insertObject()
         coin.id = data.id
         coin.name = data.name
