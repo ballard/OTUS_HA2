@@ -15,7 +15,6 @@ protocol Persistence {
     func configure(completion: @escaping ()->Void)
     
     func store<T: Insertable>(_ item: [Any], of type: T.Type)
-//    func store<T>(_ item: [T], of type: StoreType)
     func fetchCoins(offset: Int, limit: Int, completion: @escaping ([CoinData])->Void)
     func fetchExchanges(completion: @escaping ([ExchangeData])->Void)
     

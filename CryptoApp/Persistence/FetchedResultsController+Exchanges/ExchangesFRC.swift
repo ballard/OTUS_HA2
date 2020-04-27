@@ -40,8 +40,6 @@ final class ExchangesFRC: NSObject, NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         retreiveData()
-//        let objects = frc.fetchedObjects?.map { ExchangeData.fromCache($0) }
-//        didChangeContent?(objects)
     }
     
 }

@@ -10,10 +10,6 @@ import Foundation
 import PersistenceService
 import CoreData
 
-enum StoreType {
-    case coin
-    case exchange
-}
 
 extension PersistenceService: Persistence {
     
