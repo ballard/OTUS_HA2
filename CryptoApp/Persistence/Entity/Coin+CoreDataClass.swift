@@ -14,8 +14,6 @@ import PersistenceService
 @objc(Coin)
 public final class Coin: NSManagedObject, Insertable {
     
-    typealias Entity = Coin
-    
     static func insert(into context: NSManagedObjectContext, data: Any) -> Coin? {
         
         guard let data = data as? CoinDataObject else {

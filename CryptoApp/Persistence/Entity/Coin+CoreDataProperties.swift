@@ -13,7 +13,7 @@ import CoreData
 extension Coin {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Coin> {
-        return NSFetchRequest<Coin>(entityName: "Coin")
+        return NSFetchRequest<Coin>(entityName: Coin.entityName)
     }
 
     @NSManaged public var id: String

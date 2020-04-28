@@ -14,8 +14,6 @@ import PersistenceService
 @objc(Exchange)
 public final class Exchange: NSManagedObject, Insertable {
     
-    typealias Entity = Exchange
-    
     static func insert(into context: NSManagedObjectContext, data: Any) -> Exchange? {
         guard let data = data as? ExchangeDataObject else {
             return nil

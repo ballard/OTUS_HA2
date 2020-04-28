@@ -14,7 +14,7 @@ import CoreData
 extension Exchange {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Exchange> {
-        return NSFetchRequest<Exchange>(entityName: "Exchange")
+        return NSFetchRequest<Exchange>(entityName: Exchange.entityName)
     }
 
     @NSManaged public var id: String
