@@ -14,10 +14,8 @@ protocol Persistence {
     
     init(modelName: String)
     func configure(completion: @escaping ()->Void)
-    
-    func store<T: Insertable>(_ item: [Any], of type: T.Type)
-    func fetch<T1:Managed, T2: Cachable>(type: T1.Type, offset: Int, limit: Int, completion: @escaping ([T2])->Void)
-    func fetchAll<T1:Managed, T2: Cachable>(type: T1.Type, completion: @escaping ([T2])->Void)
-    
+    func storeCoins(_ items: [CoinDataObject])
+    func storeExchanges(_ items: [ExchangeDataObject])
+    func fetchCoins(offset: Int, limit: Int, completion: @escaping ([CoinData])->Void)
     var viewContext: NSManagedObjectContext { get } 
 }

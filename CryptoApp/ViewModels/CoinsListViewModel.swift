@@ -36,7 +36,7 @@ final class CoinsListViewModel: ObservableObject {
         }
         isFetching = true
         print("fetching data with ofsset: \(self.offset)")
-        cacheSerice.fetch(type: Coin.self, offset: self.offset, limit: self.offsetStep) { (data: [CoinData]) in
+        cacheSerice.fetchCoins(offset: self.offset, limit: self.offsetStep) { data in
             if data.count > 0 {
                 self.items.append(contentsOf: data)
                 self.offset += self.offsetStep
@@ -56,7 +56,7 @@ final class CoinsListViewModel: ObservableObject {
             guard let self = self else { return }
             if let items = items {
                 DispatchQueue.global(qos: .userInitiated).async {
-                    self.cacheSerice.store(items, of: Coin.self)
+                    self.cacheSerice.storeCoins(items)
                     DispatchQueue.main.async {
                         self.isLoading = false
                         self.fetchCoinsFromCache()

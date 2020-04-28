@@ -11,7 +11,5 @@ import CoreData
 
 protocol Insertable {
     
-    associatedtype Entity
-    
-    static func insert(into context: NSManagedObjectContext, data: Any) -> Entity
+    static func insert(into context: NSManagedObjectContext, data: Any) -> Self?
 }

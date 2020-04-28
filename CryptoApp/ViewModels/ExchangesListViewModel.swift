@@ -22,12 +22,12 @@ final class ExchangesListViewModel: ObservableObject {
     var isInitialLoad = true
     
     let exchangesService: ExchangesFetchable
-    let cacheSerive: Persistence
+    let cacheService: Persistence
     let frc: ExchangesFRC
     
     init(service: ExchangesFetchable, cache: Persistence) {
         self.exchangesService = service
-        self.cacheSerive = cache
+        self.cacheService = cache
         self.frc = ExchangesFRC(context: cache.viewContext)
         frc.didChangeContent = { [weak self] items in
             guard let self = self else { return }
@@ -63,7 +63,7 @@ final class ExchangesListViewModel: ObservableObject {
             if let items = items {
                 print("downloaded items count: \(items.count) page \(self.page) limit \(self.limit)")
                 DispatchQueue.global(qos: .userInitiated).async {
-                    self.cacheSerive.store(items, of: Exchange.self)
+                    self.cacheService.storeExchanges(items)
                     DispatchQueue.main.async {
                         self.isPageLoading = false
                         if items.count > 0 {

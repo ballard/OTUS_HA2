@@ -16,9 +16,9 @@ public final class Exchange: NSManagedObject, Insertable {
     
     typealias Entity = Exchange
     
-    static func insert(into context: NSManagedObjectContext, data: Any) -> Exchange {
+    static func insert(into context: NSManagedObjectContext, data: Any) -> Exchange? {
         guard let data = data as? ExchangeDataObject else {
-            fatalError()
+            return nil
         }
         let exchange: Exchange = context.insertObject()
         exchange.id = data.id

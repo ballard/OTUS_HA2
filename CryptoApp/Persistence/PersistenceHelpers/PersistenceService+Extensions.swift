@@ -40,7 +40,6 @@ extension PersistenceService: Persistence {
             let result = moc.performChangesSync {
                 for item in batch {
                     _ = type.insert(into: moc, data: item)
-                    
                 }
             }
             moc.reset()
@@ -74,5 +73,24 @@ extension PersistenceService: Persistence {
                 completion(items)
             }
         }
+    }
+}
+
+extension PersistenceService {
+    
+    func fetchCoins(offset: Int, limit: Int, completion: @escaping ([CoinData])->Void) {
+        fetch(type: Coin.self, offset: offset, limit: limit) { (cache: [CoinData]) in
+            completion(cache)
+        }
+    }
+}
+
+extension PersistenceService {
+    func storeCoins(_ items: [CoinDataObject]) {
+        store(items, of: Coin.self)
+    }
+    
+    func storeExchanges(_ items: [ExchangeDataObject]) {
+        store(items, of: Exchange.self)
     }
 }

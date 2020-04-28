@@ -36,4 +36,8 @@ struct CoinData: CoinDataObject, Identifiable, Cachable {
         return object
     }
 
+    static func fromItem(_ item: CoinItem) -> CoinData {
+        let object = CoinData(id: item.id, symbol: item.symbol, name: item.name)
+        return object
+    }
 }
