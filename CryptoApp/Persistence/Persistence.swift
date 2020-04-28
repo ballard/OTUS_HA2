@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import PersistenceService
 
 protocol Persistence {
     
@@ -15,8 +16,8 @@ protocol Persistence {
     func configure(completion: @escaping ()->Void)
     
     func store<T: Insertable>(_ item: [Any], of type: T.Type)
-    func fetchCoins(offset: Int, limit: Int, completion: @escaping ([CoinData])->Void)
-    func fetchExchanges(completion: @escaping ([ExchangeData])->Void)
+    func fetch<T1:Managed, T2: Cachable>(type: T1.Type, offset: Int, limit: Int, completion: @escaping ([T2])->Void)
+    func fetchAll<T1:Managed, T2: Cachable>(type: T1.Type, completion: @escaping ([T2])->Void)
     
     var viewContext: NSManagedObjectContext { get } 
 }

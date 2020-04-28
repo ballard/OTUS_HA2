@@ -23,11 +23,11 @@ final class CoinsListViewModel: ObservableObject {
     private let offsetStep = 100
     
     let coinsService: CoinsFetchable
-    let cacheSerive: Persistence
+    let cacheSerice: Persistence
     
     init(service: CoinsFetchable, cache: Persistence) {
         self.coinsService = service
-        self.cacheSerive = cache
+        self.cacheSerice = cache
     }
     
     func fetchCoinsFromCache() {
@@ -36,7 +36,7 @@ final class CoinsListViewModel: ObservableObject {
         }
         isFetching = true
         print("fetching data with ofsset: \(self.offset)")
-        cacheSerive.fetchCoins(offset: self.offset, limit: self.offsetStep) { data in
+        cacheSerice.fetch(type: Coin.self, offset: self.offset, limit: self.offsetStep) { (data: [CoinData]) in
             if data.count > 0 {
                 self.items.append(contentsOf: data)
                 self.offset += self.offsetStep
@@ -56,7 +56,7 @@ final class CoinsListViewModel: ObservableObject {
             guard let self = self else { return }
             if let items = items {
                 DispatchQueue.global(qos: .userInitiated).async {
-                    self.cacheSerive.store(items, of: Coin.self)
+                    self.cacheSerice.store(items, of: Coin.self)
                     DispatchQueue.main.async {
                         self.isLoading = false
                         self.fetchCoinsFromCache()

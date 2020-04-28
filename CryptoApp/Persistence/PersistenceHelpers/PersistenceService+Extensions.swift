@@ -40,6 +40,7 @@ extension PersistenceService: Persistence {
             let result = moc.performChangesSync {
                 for item in batch {
                     _ = type.insert(into: moc, data: item)
+                    
                 }
             }
             moc.reset()
@@ -49,27 +50,27 @@ extension PersistenceService: Persistence {
         }
     }
     
-    func fetchCoins(offset: Int, limit: Int, completion: @escaping ([CoinData])->Void) {
+    func fetch<T1:Managed, T2: Cachable>(type: T1.Type, offset: Int, limit: Int, completion: @escaping ([T2])->Void) {
         let moc = self.coreDataStack.managedContext
         moc.perform {
-            let request = Coin.sortedFetchRequest
+            let request = type.sortedFetchRequest
             request.fetchBatchSize = 20
             request.fetchOffset = offset
             request.fetchLimit = limit
             if let coins = try? moc.fetch(request) {
-                let items = coins.map { CoinData.fromCache($0) }
+                let items = coins.compactMap { T2.fromCache($0) }
                 completion(items)
             }
         }
     }
     
-    func fetchExchanges(completion: @escaping ([ExchangeData])->Void) {
+    func fetchAll<T1:Managed, T2: Cachable>(type: T1.Type, completion: @escaping ([T2])->Void) {
         let moc = self.coreDataStack.managedContext
         moc.perform {
             let request = Exchange.sortedFetchRequest
             request.fetchBatchSize = 20
             if let coins = try? moc.fetch(request) {
-                let items = coins.map { ExchangeData.fromCache($0) }
+                let items = coins.compactMap { T2.fromCache($0) }
                 completion(items)
             }
         }

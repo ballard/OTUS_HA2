@@ -34,7 +34,7 @@ extension ExchangeData: Hashable {
     }
 }
 
-struct ExchangeData: ExchangeDataObject, Identifiable {
+struct ExchangeData: ExchangeDataObject, Identifiable, Cachable {
     var id: String
     var name: String
     var yearEstablished: Int?
@@ -47,6 +47,24 @@ struct ExchangeData: ExchangeDataObject, Identifiable {
     var trustScoreRank: Int?
     var tradeVolume24hBtc: Double?
     var tradeVolume24hBtcNormalized: Double?
+    
+    static func fromCache(_ item: Any) -> ExchangeData? {
+        guard let item = item as? Exchange else { return nil }
+        let object = ExchangeData(id: item.id,
+        name: item.name,
+        yearEstablished: Int(item.yearEstablished),
+        country: item.country,
+        description: item.itemDescription,
+        url: item.url,
+        image: item.image,
+        hasTradingIncentive: item.hasTradingIncentive,
+        trustScore: Int(item.trustScore),
+        trustScoreRank: Int(item.trustScoreRank),
+        tradeVolume24hBtc: item.tradeVolume24hBtc,
+        tradeVolume24hBtcNormalized: item.tradeVolume24hBtcNormalized)
+        return object
+        
+    }
     
     static func fromCache(_ item: Exchange) -> ExchangeData {
 

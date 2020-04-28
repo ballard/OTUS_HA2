@@ -36,6 +36,7 @@
 		1F8DAA81242CE91E00DB5EDC /* ExchangesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8DAA80242CE91E00DB5EDC /* ExchangesService.swift */; };
 		1F93FAD22450CEB700D3B141 /* ExchangesFRC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93FAD12450CEB700D3B141 /* ExchangesFRC.swift */; };
 		1F93FB1424574C7F00D3B141 /* Insertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93FB1324574C7F00D3B141 /* Insertable.swift */; };
+		1F93FB162458055A00D3B141 /* Fetchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F93FB152458055A00D3B141 /* Fetchable.swift */; };
 		1FE32858244DE08900B35FA4 /* PersistenceService in Frameworks */ = {isa = PBXBuildFile; productRef = 1FE32857244DE08900B35FA4 /* PersistenceService */; };
 		1FE3285A244EE1A200B35FA4 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE32859244EE1A200B35FA4 /* Persistence.swift */; };
 		1FE3285F244F007E00B35FA4 /* Exchange+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FE3285D244F007E00B35FA4 /* Exchange+CoreDataClass.swift */; };
@@ -74,6 +75,7 @@
 		1F8DAA80242CE91E00DB5EDC /* ExchangesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangesService.swift; sourceTree = "<group>"; };
 		1F93FAD12450CEB700D3B141 /* ExchangesFRC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangesFRC.swift; sourceTree = "<group>"; };
 		1F93FB1324574C7F00D3B141 /* Insertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insertable.swift; sourceTree = "<group>"; };
+		1F93FB152458055A00D3B141 /* Fetchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetchable.swift; sourceTree = "<group>"; };
 		1FE32853244DE03300B35FA4 /* PersistenceService.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PersistenceService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FE32859244EE1A200B35FA4 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		1FE3285D244F007E00B35FA4 /* Exchange+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Exchange+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				1F00E5B8244780E000D757A7 /* Coin+CoreDataClass.swift */,
 				1F00E5B9244780E000D757A7 /* Coin+CoreDataProperties.swift */,
 				1F93FB1324574C7F00D3B141 /* Insertable.swift */,
+				1F93FB152458055A00D3B141 /* Fetchable.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -343,6 +346,7 @@
 				1F32259F241FC64700C34DC5 /* ExchangesListViewModel.swift in Sources */,
 				1F22F747244B010B0001E6B7 /* CoinItem+Extensions.swift in Sources */,
 				1FE32860244F007E00B35FA4 /* Exchange+CoreDataProperties.swift in Sources */,
+				1F93FB162458055A00D3B141 /* Fetchable.swift in Sources */,
 				1F22F754244CF1410001E6B7 /* PersistenceService+Extensions.swift in Sources */,
 				1F93FAD22450CEB700D3B141 /* ExchangesFRC.swift in Sources */,
 				1F3225CB2421221900C34DC5 /* Data+Extensions.swift in Sources */,

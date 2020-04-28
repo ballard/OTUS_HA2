@@ -12,7 +12,7 @@ import CoreData
 import PersistenceService
 
 @objc(Exchange)
-public class Exchange: NSManagedObject, Insertable {
+public final class Exchange: NSManagedObject, Insertable {
     
     typealias Entity = Exchange
     
