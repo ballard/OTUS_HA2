@@ -18,7 +18,7 @@ final class ExchangesListViewModel: ObservableObject {
     @Published private(set) var isPageFetching = false
     
     private var page = 1
-    private let limit = 20
+    private let limit = 100
     var isInitialLoad = true
     
     let exchangesService: ExchangesFetchable
@@ -36,7 +36,7 @@ final class ExchangesListViewModel: ObservableObject {
                     print("new data arrived: \(items.count)")
                     self.items = items
                     if self.isInitialLoad {
-                        let pageNum = Int(round(Double(items.count)/Double(self.limit))) + 1
+                        let pageNum = Int((Double(items.count)/Double(self.limit)).rounded(.down)) + 1
                         print("new page number: \(pageNum)")
                         self.page = pageNum
                         self.isInitialLoad = false
